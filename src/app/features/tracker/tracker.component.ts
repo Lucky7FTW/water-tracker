@@ -4,6 +4,7 @@
    import { Component, computed, inject } from '@angular/core';
    import { CommonModule } from '@angular/common';
    import { FormsModule }  from '@angular/forms';
+   import { Router }       from '@angular/router';
    import { HydrationService, Drink } from '../../core/hydration.service';
    
    @Component({
@@ -14,8 +15,9 @@
      styleUrls:  ['./tracker.component.scss']
    })
    export class TrackerComponent {
-     /* dependency */
-     hyd = inject(HydrationService);
+     /* dependencies */
+     hyd    = inject(HydrationService);
+     router = inject(Router);
    
      /* state */
      customMl = 0;

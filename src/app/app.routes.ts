@@ -1,29 +1,33 @@
 import { Routes } from '@angular/router';
 import { goalGuard } from './core/goal.guard';
 
-/**
- * Browser-side route table.
- * Stand-alone components are lazy-loaded with `loadComponent`.
- */
+/* ───────── client + server can share this same array ───────── */
 export const routes: Routes = [
-  /* ───────────────────────────── default ─────────────────────────── */
+  /* default */
   { path: '', redirectTo: 'setup', pathMatch: 'full' },
 
-  /* ───────────────────────────── wizard ──────────────────────────── */
+  /* one‑time wizard (auto‑skipped later by GoalGuard) */
   {
     path: 'setup',
     loadComponent: () =>
       import('./features/setup/setup.component').then(m => m.SetupComponent),
-    canActivate: [goalGuard]          // skip if a goal already exists
+    canActivate: [goalGuard]
   },
 
-  /* ───────────────────────────── tracker ─────────────────────────── */
+  /* main tracker */
   {
     path: 'tracker',
     loadComponent: () =>
       import('./features/tracker/tracker.component').then(m => m.TrackerComponent)
   },
 
-  /* ───────────────────────────── wildcard ────────────────────────── */
-  { path: '**', redirectTo: 'setup' }
+  /* NEW: settings page (always reachable) */
+  {
+    path: 'settings',
+    loadComponent: () =>
+      import('./features/setup/setup.component').then(m => m.SetupComponent)
+  },
+
+  /* wildcard */
+  { path: '**', redirectTo: 'tracker' }
 ];
