@@ -4,37 +4,29 @@
   <div class="grid">
     <label>
       Weight&nbsp;(kg)
-      <input type="number"
-             name="kg"
-             [(ngModel)]="model.kg"
-             required min="20" max="250"
-             (input)="recalc()">
+      <input  type="number" name="kg" [(ngModel)]="model.kg"
+              required  min="20"  max="250" inputmode="numeric"
+              (keydown)="preventMinus($event)" (input)="recalc()">
     </label>
 
     <label>
       Height&nbsp;(cm)
-      <input type="number"
-             name="cm"
-             [(ngModel)]="model.cm"
-             required min="100" max="250"
-             (input)="recalc()">
+      <input  type="number" name="cm" [(ngModel)]="model.cm"
+              required  min="100" max="250" inputmode="numeric"
+              (keydown)="preventMinus($event)" (input)="recalc()">
     </label>
 
     <label>
       Age&nbsp;(years)
-      <input type="number"
-             name="age"
-             [(ngModel)]="model.age"
-             required min="10" max="120"
-             (input)="recalc()">
+      <input  type="number" name="age" [(ngModel)]="model.age"
+              required  min="10"  max="120" inputmode="numeric"
+              (keydown)="preventMinus($event)" (input)="recalc()">
     </label>
 
     <label>
       Sex
-      <select name="sex"
-              [(ngModel)]="model.sex"
-              required
-              (change)="recalc()">
+      <select name="sex" [(ngModel)]="model.sex"
+              required (change)="recalc()">
         <option value="female">Female</option>
         <option value="male">Male</option>
       </select>

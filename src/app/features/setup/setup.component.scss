@@ -1,56 +1,17 @@
-/* card container (the <form>) */
-form{
-  width:min(100%,460px);
-  padding:2rem 2.25rem;
-  border-radius:var(--radius);
-  background:var(--clr-card-bg);
-  backdrop-filter:blur(16px) saturate(160%);
-  box-shadow:var(--shadow);
-  display:grid; gap:1.75rem; text-align:center;
-  color:var(--clr-text);
-  border:1px solid var(--clr-stroke);
-}
+form{max-width:420px;margin:2rem auto;display:grid;gap:1.5rem;text-align:center;}
+.title{font-size:1.6rem;font-weight:600;}
 
-/* title */
-.title{font-size:1.55rem;font-weight:600;}
-
-/* two‑column grid – collapses on mobile */
-.grid{display:grid;gap:1rem 1.4rem;grid-template-columns:1fr 1fr;}
+.grid{display:grid;gap:1rem 1.2rem;grid-template-columns:1fr 1fr;}
 @media(max-width:480px){.grid{grid-template-columns:1fr;}}
+label{display:grid;gap:.35rem;font-size:.9rem;}
 
-label{display:grid;gap:.4rem;font-size:.9rem;}
-
-/* shared control styles */
 input,select{
-  padding:.55rem .8rem;
-  border:1px solid #dbeafe;
-  border-radius:.55rem;
-  font-size:1rem;
-  text-align:center;
-  background:rgba(255,255,255,0.7);
-  transition:border-color .2s,box-shadow .2s;
-  &:focus{
-    outline:none;
-    border-color:var(--clr-accent);
-    box-shadow:0 0 0 3px rgba(14,165,233,.25);
-  }
+  padding:.55rem .8rem;border:1px solid #dbeafe;border-radius:.55rem;
+  font-size:1rem;text-align:center;background:rgba(255,255,255,.7);
 }
-
-/* live preview */
 .result{font-size:.95rem;}
-
-/* primary action */
 .primary{
-  padding:.75rem 1.4rem;
-  border:none;
-  border-radius:.65rem;
-  font-weight:600;
-  background:var(--clr-accent);
-  color:#fff;
-  cursor:pointer;
-  transition:transform .15s,box-shadow .15s;
-  box-shadow:0 4px 14px rgba(14,165,233,.35);
-  &:hover{transform:translateY(-2px);}
-  &:active{transform:translateY(0);}
-  &:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none;}
+  padding:.75rem 1.4rem;border:none;border-radius:.65rem;
+  font-weight:600;background:var(--clr-accent);color:#fff;
+  cursor:pointer;transition:opacity .2s;&:disabled{opacity:.4;cursor:not-allowed;}
 }
