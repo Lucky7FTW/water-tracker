@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+/* ───────── Reset & font ───────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{
+  font-family:'Poppins',system-ui,sans-serif;
+  background: radial-gradient(110% 100% at 50% 0,
+              #a1c4fd 0%, #c2e9fb 40%, #f0f0f0 100%);
+  min-height:100dvh;
+  display:flex; align-items:center; justify-content:center;
+  animation:fade 0.8s both;
+}
+@keyframes fade{from{opacity:0;transform:translateY(10px);}}
+
+/* ───────── Color tokens ───────── */
+:root{
+  --clr-card-bg: rgba(255,255,255,0.55);
+  --clr-stroke : rgba(255,255,255,0.6);
+  --clr-text   : #0f172a;
+  --clr-accent : #0ea5e9;
+  --radius     : 1.25rem;
+  --shadow     : 0 6px 24px rgba(15,23,42,0.15);
+}

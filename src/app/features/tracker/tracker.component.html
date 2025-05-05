@@ -1,1 +1,41 @@
-<p>tracker works!</p>
+<form class="card" (ngSubmit)="add(customMl)" #f="ngForm" novalidate>
+    <!-- MAIN WATER CUP -->
+    <div class="cup" [style.--level]="percent()">
+      <span class="pct">{{ percent() | number:'1.0-0' }}%</span>
+    </div>
+  
+    <p class="totals">
+      {{ total() }} / {{ hyd.goal()?.mlPerDay }} mL
+    </p>
+  
+    <!-- quick‑add preset buttons -->
+    <div class="quick">
+      <button type="button" (click)="add(250)">+250 mL</button>
+      <button type="button" (click)="add(500)">+500 mL</button>
+    </div>
+  
+    <!-- custom amount -->
+<div class="custom">
+    <input type="number"
+           name="customMl"
+           [(ngModel)]="customMl"
+           min="1" max="2000"
+           placeholder="Enter mL…" />
+  
+    <button type="submit"
+            class="add-btn"
+            [disabled]="!customMl">
+      Add
+    </button>
+  </div>
+  
+    <!-- drink log -->
+    <ul class="list">
+      <li *ngFor="let drink of drinks()">
+        {{ drink.ml }} mL
+        <span class="time">{{ drink.ts | date:'shortTime' }}</span>
+        <button (click)="hyd.undo(drink)" title="Undo">×</button>
+      </li>
+    </ul>
+  </form>
+  
