@@ -6,6 +6,7 @@
    import { FormsModule }  from '@angular/forms';
    import { Router }       from '@angular/router';
    import { HydrationService, Drink } from '../../core/hydration.service';
+   import { ThemeService } from '../../core/theme.service';
    
    @Component({
      selector: 'app-tracker',
@@ -18,6 +19,7 @@
      /* dependencies */
      hyd    = inject(HydrationService);
      router = inject(Router);
+     theme  = inject(ThemeService);          // 🌙 / ☀️ toggle
    
      /* state */
      customMl = 0;

@@ -1,4 +1,12 @@
 <form class="card" (ngSubmit)="add(customMl)" #f="ngForm" novalidate>
+    <!-- theme toggle -->
+    <button type="button"
+            class="theme-btn"
+            title="Toggle light / dark"
+            (click)="theme.toggle()">
+      🌙
+    </button>
+  
     <!-- settings gear -->
     <button type="button"
             class="gear"

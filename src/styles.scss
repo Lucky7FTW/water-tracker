@@ -1,22 +1,47 @@
-/* ───────── Reset & font ───────── */
+/* 0️⃣  Font + reset (unchanged) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-*{ box-sizing:border-box; margin:0; padding:0; }
-body{
-  font-family:'Poppins',system-ui,sans-serif;
-  background: radial-gradient(110% 100% at 50% 0,
-              #a1c4fd 0%, #c2e9fb 40%, #f0f0f0 100%);
-  min-height:100dvh;
-  display:flex; align-items:center; justify-content:center;
-  animation:fade 0.8s both;
-}
-@keyframes fade{from{opacity:0;transform:translateY(10px);}}
+*{box-sizing:border-box;margin:0;padding:0}
 
-/* ───────── Color tokens ───────── */
+/* 1️⃣  Light palette */
 :root{
-  --clr-card-bg: rgba(255,255,255,0.55);
-  --clr-stroke : rgba(255,255,255,0.6);
-  --clr-text   : #0f172a;
-  --clr-accent : #0ea5e9;
-  --radius     : 1.25rem;
-  --shadow     : 0 6px 24px rgba(15,23,42,0.15);
+  --clr-card-bg : rgba(255,255,255,.55);
+  --clr-stroke  : rgba(255,255,255,.6);
+  --clr-text    : #0f172a;
+  --clr-accent    : #0ea5e9;   /* button / cup rim */
+  --clr-accent-h  : #0284c7;   /* hover */
+  --clr-bg      : radial-gradient(110% 100% at 50% 0,
+                   #a1c4fd 0%, #c2e9fb 40%, #f0f0f0 100%);
+}
+
+/* 2️⃣  Dark palette from prefers‑color‑scheme */
+@media (prefers-color-scheme: dark){
+  :root{
+    --clr-card-bg : rgba(22,28,45,.7);
+    --clr-stroke  : rgba(148,163,184,.25);
+    --clr-text    : #f8fafc;
+    --clr-accent    : #0284c7;
+    --clr-accent-h  : #0369a1;
+    --clr-bg      : radial-gradient(150% 120% at 50% -20%,
+                     #0f172a 0%, #1e293b 35%, #334155 75%, #475569 100%);
+  }
+}
+
+/* 3️⃣  Manual overrides for ThemeService */
+html.theme-light{ @extend :root; }
+html.theme-dark {
+  --clr-card-bg : rgba(22,28,45,.7);
+  --clr-stroke  : rgba(148,163,184,.25);
+  --clr-text    : #f8fafc;
+  --clr-accent    : #0284c7;
+  --clr-accent-h  : #0369a1;
+  --clr-bg      : radial-gradient(150% 120% at 50% -20%,
+                   #0f172a 0%, #1e293b 35%, #334155 75%, #475569 100%);
+}
+
+/* 4️⃣  Global background + font */
+body{
+  background:var(--clr-bg); color:var(--clr-text);
+  font-family:'Poppins',system-ui,sans-serif;
+  min-height:100dvh; display:flex;align-items:center;justify-content:center;
+  transition:background .4s;
 }

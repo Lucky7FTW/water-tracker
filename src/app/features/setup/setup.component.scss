@@ -12,6 +12,8 @@ input,select{
 .result{font-size:.95rem;}
 .primary{
   padding:.75rem 1.4rem;border:none;border-radius:.65rem;
-  font-weight:600;background:var(--clr-accent);color:#fff;
-  cursor:pointer;transition:opacity .2s;&:disabled{opacity:.4;cursor:not-allowed;}
+  font-weight:600;background:var(--clr-accent);color:#fff;cursor:pointer;
+  transition:background .15s,opacity .2s;
+  &:hover{background:var(--clr-accent-h);}
+  &:disabled{opacity:.4;cursor:not-allowed;}
 }
