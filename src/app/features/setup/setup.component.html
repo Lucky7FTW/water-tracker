@@ -1,32 +1,40 @@
 <form #f="ngForm" (ngSubmit)="save(f)" novalidate>
-  <h1 class="title">Personalised water goal</h1>
+  <h1 class="title">
+    Personalised water goal
+    <button type="button"
+            class="info-btn"
+            title="How is this calculated?"
+            (click)="showInfo=true">?</button>
+
+    <button type="button"
+            class="unit-btn"
+            [title]="'Switch to '+(unit==='metric'?'Imperial':'Metric')"
+            (click)="toggleUnits()">
+      {{ unit === 'metric' ? 'kg/cm' : 'lb/in' }}
+    </button>
+  </h1>
 
   <div class="grid">
-    <label>
-      Weight&nbsp;(kg)
-      <input  type="number" name="kg" [(ngModel)]="model.kg"
-              required  min="20"  max="250" inputmode="numeric"
-              (keydown)="preventMinus($event)" (input)="recalc()">
+    <label>Weight&nbsp;({{ unit==='metric'?'kg':'lb' }})
+      <input type="number" name="weight" [(ngModel)]="model.weight"
+             required min="1" max="500" inputmode="decimal"
+             (keydown)="preventMinus($event)" (input)="recalc()">
     </label>
 
-    <label>
-      Height&nbsp;(cm)
-      <input  type="number" name="cm" [(ngModel)]="model.cm"
-              required  min="100" max="250" inputmode="numeric"
-              (keydown)="preventMinus($event)" (input)="recalc()">
+    <label>Height&nbsp;({{ unit==='metric'?'cm':'in' }})
+      <input type="number" name="height" [(ngModel)]="model.height"
+             required min="1" max="300" inputmode="decimal"
+             (keydown)="preventMinus($event)" (input)="recalc()">
     </label>
 
-    <label>
-      Age&nbsp;(years)
-      <input  type="number" name="age" [(ngModel)]="model.age"
-              required  min="10"  max="120" inputmode="numeric"
-              (keydown)="preventMinus($event)" (input)="recalc()">
+    <label>Age&nbsp;(years)
+      <input type="number" name="age" [(ngModel)]="model.age"
+             required min="10" max="120" inputmode="numeric"
+             (keydown)="preventMinus($event)" (input)="recalc()">
     </label>
 
-    <label>
-      Sex
-      <select name="sex" [(ngModel)]="model.sex"
-              required (change)="recalc()">
+    <label>Sex
+      <select name="sex" [(ngModel)]="model.sex" required (change)="recalc()">
         <option value="female">Female</option>
         <option value="male">Male</option>
       </select>
@@ -35,10 +43,32 @@
 
   <p class="result" *ngIf="goalPreview">
     → Recommended:
-    <strong>{{ goalPreview | number:'1.0-0' }} mL</strong> / day
+    <strong>{{ goalPreview | number:'1.0-0' }} mL</strong> / day
   </p>
 
   <button class="primary" type="submit" [disabled]="f.invalid">
     Save&nbsp;goal
   </button>
 </form>
+
+<!-- ╭── Info Modal ──╮ -->
+<div class="backdrop" *ngIf="showInfo" (click)="showInfo=false"></div>
+<div class="modal" *ngIf="showInfo">
+  <h2>How we calculate your daily goal</h2>
+  <ol>
+    <li><strong>Base:</strong> <code>weight × 30 mL</code></li>
+    <li><strong>Sex:</strong> +10 % if male</li>
+    <li><strong>Height:</strong> +5 % if ≥ 180 cm</li>
+    <li><strong>Age:</strong> −5 % (55–69 yrs) or −10 % (≥ 70 yrs)</li>
+    <li><strong>Round:</strong> nearest 50 mL</li>
+  </ol>
+
+  <h3>Measurement tips</h3>
+  <ul>
+    <li>Weigh yourself in the morning.</li>
+    <li>Measure height without shoes.</li>
+    <li>Use the toggle for lb/in if preferred.</li>
+  </ul>
+
+  <button class="close" (click)="showInfo=false">Close</button>
+</div>
